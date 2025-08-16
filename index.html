@@ -9,17 +9,41 @@
       background-color: #f8f5f2;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
     header {
       background: linear-gradient(90deg, #d62828, #f77f00);
       color: white;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 20px 80px;
+      position: relative;
     }
     header h1 {
       margin: 0;
       font-size: 42px;
       animation: bounce 2s infinite;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 6%;
+      background: rgba(214, 40, 40, 0.95);
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 15px 25px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #f77f00;
     }
     section {
       max-width: 1000px;
@@ -44,6 +68,7 @@
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
     .item:hover {
       transform: scale(1.05);
@@ -76,7 +101,6 @@
       40% { transform: translateY(-15px); }
       60% { transform: translateY(-8px); }
     }
-    /* Style bouton Discord */
     .discord-btn {
       display: inline-block;
       padding: 15px 25px;
@@ -91,23 +115,65 @@
       transform: scale(1.05);
       box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     }
+    .discord-logo {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+ /* ===== Footer ===== */
+    footer { text-align: center; padding: 30px 20px; background: #d62828; color: white; }
+
+    /* Styles pour détails */
+    .details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
+      padding: 0 15px;
+      font-size: 16px;
+      color: #111;
+      opacity: 0;
+      background-color: rgba(214, 40, 40, 0.1);
+      border-left: 4px solid #d62828;
+      border-radius: 0 0 10px 10px;
+      margin-top: 10px;
+    }
+    .details.open {
+      padding: 10px 15px;
+      opacity: 1;
+      max-height: 500px; /* assez pour tout le texte */
+    }
   </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <a href="#plats">Plats</a>
+    <a href="#accompagnements">Accompagnements</a>
+    <a href="#boissons">Boissons</a>
+    <a href="#desserts">Desserts</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <br><br><br>
+
   <header>
     <h1><img src="Untitled image (1).png" alt="logo" height="200" width="500"></h1>
     <h1>BY SULLY</h1>
   </header>
 
   <!-- Plats -->
-  <section>
+  <section id="plats">
     <h2>🥩 Plats</h2>
     <div class="menu-grid">
       <div class="item">
-        <img src="burger classique.jpg" alt="Burger Classique" >
+        <img src="burger classique.jpg" alt="Burger Classique">
         <div class="info">
           <h3>Burger Classique</h3>
           <p class="prix">$100</p>
+        </div>
+        <div class="details">
+          <p>Ingrédients : pain, steak, salade, tomate, fromage, sauce maison.</p>
         </div>
       </div>
       <div class="item">
@@ -116,6 +182,9 @@
           <h3>Cheese Burger</h3>
           <p class="prix">$120</p>
         </div>
+        <div class="details">
+          <p>Ingrédients : pain, steak, double fromage, salade, sauce spéciale.</p>
+        </div>
       </div>
       <div class="item">
         <img src="double.jpg" alt="Double Shot Burger">
@@ -123,19 +192,25 @@
           <h3>Double Shot Burger</h3>
           <p class="prix">$150</p>
         </div>
+        <div class="details">
+          <p>Ingrédients : pain, double steak, double fromage, oignons, sauce BBQ.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Accompagnements -->
-  <section>
+  <section id="accompagnements">
     <h2>🍟 Accompagnements</h2>
     <div class="menu-grid">
       <div class="item">
-        <img src="grande frite.png" alt="Frites" >
+        <img src="grande frite.png" alt="Frites">
         <div class="info">
           <h3>Grande Frite</h3>
           <p class="prix">$50</p>
+        </div>
+        <div class="details">
+          <p>Frites croustillantes servies avec ketchup et mayonnaise.</p>
         </div>
       </div>
       <div class="item">
@@ -144,12 +219,15 @@
           <h3>Onion Rings</h3>
           <p class="prix">$60</p>
         </div>
+        <div class="details">
+          <p>Rondelles d'oignons dorées et croustillantes.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Boissons -->
-  <section>
+  <section id="boissons">
     <h2>🥤 Boissons</h2>
     <div class="menu-grid">
       <div class="item">
@@ -158,19 +236,25 @@
           <h3>Cola</h3>
           <p class="prix">$30</p>
         </div>
+        <div class="details">
+          <p>Boisson gazeuse bien fraîche.</p>
+        </div>
       </div>
       <div class="item">
-        <img src="milk shake.jpg" alt="Milkshake ">
+        <img src="milk shake.jpg" alt="Milkshake">
         <div class="info">
-          <h3>Milkshake </h3>
+          <h3>Milkshake</h3>
           <p class="prix">$70</p>
+        </div>
+        <div class="details">
+          <p>Milkshake crémeux aux saveurs de votre choix.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Desserts -->
-  <section>
+  <section id="desserts">
     <h2>🍨 Desserts</h2>
     <div class="menu-grid">
       <div class="item">
@@ -179,6 +263,9 @@
           <h3>Cookie XXL</h3>
           <p class="prix">$40</p>
         </div>
+        <div class="details">
+          <p>Cookie géant aux pépites de chocolat.</p>
+        </div>
       </div>
       <div class="item">
         <img src="tarte pommme.jpg" alt="Tarte aux Pommes">
@@ -186,19 +273,35 @@
           <h3>Tarte aux Pommes</h3>
           <p class="prix">$55</p>
         </div>
+        <div class="details">
+          <p>Tarte maison avec pommes caramélisées et pâte croustillante.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section>
+  <section id="contact">
     <h2>📬 Contact</h2>
     <div style="text-align: center; margin-top: 20px;">
       <p>Vous pouvez nous rejoindre sur Discord :</p>
-      <a href="https://discord.gg/bYt5kHbjFD" target="_blank" class="discord-btn">
+      <a href="https://discord.com/invite/TONLIENDISCORD" target="_blank" class="discord-btn">
+        <img src="Discord_Logo_sans_texte.svg.png" alt="Discord Logo" class="discord-logo">
         Rejoindre sur Discord
       </a>
     </div>
   </section>
+<footer>
+    &copy; 2025 Burger Shot - Tous droits réservés
+  </footer>
+  <script>
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const details = item.querySelector('.details');
+        details.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
